@@ -10,7 +10,7 @@ def load_data():
 
 def create_funnel_requests(df, stages, title):
     fig = go.Figure(go.Funnel(
-        y=df["funnel's stage"].loc[stages:],
+        y=df["funnel's stage"].loc[stages:].str.replace("_", " "),
         x=df['value'].loc[stages:],
         textposition="inside",
         textinfo="value + percent previous+text",
@@ -21,16 +21,36 @@ def create_funnel_requests(df, stages, title):
 
     fig.update_layout(
         autosize=False,
-        width=1000,
+        width=700,
         height=800,
-        title=title
+        title=title,
+        font=dict(
+            family="Courier New, monospace",  # You can choose a different font here
+            size=18,  # You can adjust the size to make it larger or smaller
+            color="RebeccaPurple",  # You can choose a different color here
+
+        ),
+        yaxis=dict(
+            title_font=dict(
+                size=24,
+                family='Courier New, monospace',
+                color='RebeccaPurple',
+
+            ),
+            tickfont=dict(
+                size=18,
+                family='Courier New, monospace',
+                color='RebeccaPurple',
+
+            ),
+        ),
     )
     return fig
 
 
 def create_funnel_users(df, stages, title):
     fig = go.Figure(go.Funnel(
-        y=df["funnel's stage"].loc[:stages],
+        y=df["funnel's stage"].loc[:stages].str.replace("_", " "),
         x=df['value'].loc[:stages],
         textposition="inside",
         textinfo="value+percent initial",
@@ -41,10 +61,32 @@ def create_funnel_users(df, stages, title):
 
     fig.update_layout(
         autosize=False,
-        width=1000,
+        width=700,
         height=800,
-        title=title
+        title=title,
+        font=dict(
+            family="Courier New, monospace",  # You can choose a different font here
+            size=18,  # You can adjust the size to make it larger or smaller
+            color="RebeccaPurple",  # You can choose a different color here
+
+
+        ),
+        yaxis=dict(
+            title_font=dict(
+                size=24,
+                family='Courier New, monospace',
+                color='RebeccaPurple',
+
+            ),
+            tickfont=dict(
+                size=18,
+                family='Courier New, monospace',
+                color='RebeccaPurple',
+
+            ),
+        ),
     )
+
     return fig
 
 
